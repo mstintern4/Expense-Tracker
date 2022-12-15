@@ -18,7 +18,6 @@ const ShowTransactions = () => {
   }, []);
   return (
     <div className="container my-5">
-      <h1>{users.id}</h1>
       <table className="table table-bordered">
         <thead>
           <tr>
