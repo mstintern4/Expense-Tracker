@@ -72,7 +72,7 @@ const AddTransaction = () => {
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example3">
-                          date address
+                          Enter Date
                         </label>
                       </div>
                       <div className="form-outline mb-4">
@@ -84,7 +84,7 @@ const AddTransaction = () => {
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example3">
-                          description
+                          Enter Description
                         </label>
                       </div>
                       {/* description input */}
@@ -97,7 +97,7 @@ const AddTransaction = () => {
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example4">
-                          userID Number
+                          Enter User ID
                         </label>
                       </div>
                       <div className="form-outline mb-4">
@@ -124,7 +124,7 @@ const AddTransaction = () => {
                           </option>
                         </select>
                         <label className="form-label" htmlFor="form3Example4">
-                          Select type
+                          Select Type
                         </label>
                       </div>
                       {/* Submit button */}

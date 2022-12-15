@@ -6,6 +6,7 @@ import SignUpForm from "./components/SignUpForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 import AddTransaction from "./components/AddTransaction";
+import ShowTransactions from "./components/ShowTransactions";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addtransaction" element={<AddTransaction />} />
+        <Route path="/showtransaction" element={<ShowTransactions />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUpForm />} />
       </Routes>
