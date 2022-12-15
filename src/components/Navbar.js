@@ -35,18 +35,23 @@ const Navbar = () => {
             {/* Left links */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">
-                  Dashboard
+                <Link className="nav-link text-dark" to="/addtransaction">
+                  Add Transaction
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-dark" to="/addtransaction">
+                  Get Transaction
                 </Link>
               </li>
             </ul>
             {/* Left links */}
             <div className="d-flex align-items-center">
-              <Link to="login" class="btn btn-primary mx-2">
+              <Link to="login" className="btn btn-primary mx-2">
                 Login
               </Link>
 
-              <Link to="signup" class="btn btn-primary">
+              <Link to="signup" className="btn btn-primary">
                 Sign up
               </Link>
             </div>

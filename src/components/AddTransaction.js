@@ -2,33 +2,38 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const SignUpForm = () => {
-  let [inputdata, setInputdata] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
+const AddTransaction = () => {
+  let [addTransaction, setAddTransaction] = useState({
+    amount: "",
+    date: "",
+    description: "",
+    userID: "",
+    type: "",
   });
-  const { name, email, password, phone } = inputdata;
+  const { amount, date, description, userID, type } = addTransaction;
   const data = (e) => {
-    setInputdata({ ...inputdata, [e.target.name]: e.target.value });
+    setAddTransaction({ ...addTransaction, [e.target.name]: e.target.value });
   };
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     await axios
-      .post("https://pkdservers.com/ExpenseTracker/Users/SignUp", inputdata)
+      .post(
+        "https://pkdservers.com/ExpenseTracker/Transactions/AddTransaction",
+        addTransaction
+      )
       .then((response) => {
         console.log(response);
       })
       .catch((err) => {
         console.log(err);
       });
-    setInputdata({
-      name: "",
-      email: "",
-      password: "",
-      phone: "",
+    setAddTransaction({
+      amount: "",
+      date: "",
+      description: "",
+      userID: "",
+      type: "",
     });
   };
   return (
@@ -45,57 +50,83 @@ const SignUpForm = () => {
                 <div className="card">
                   <div className="card-body py-5 px-md-5">
                     <form onSubmit={(e) => handleSignUp(e)}>
-                      {/* email input */}
+                      {/* date input */}
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          name="name"
-                          value={name}
+                          name="amount"
+                          value={amount}
                           onChange={(e) => data(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example3">
-                          Full name
+                          Enter Amount
                         </label>
                       </div>
                       <div className="form-outline mb-4">
                         <input
-                          type="email"
-                          name="email"
-                          value={email}
+                          type="date"
+                          name="date"
+                          value={date}
                           onChange={(e) => data(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example3">
-                          email address
+                          date address
                         </label>
                       </div>
                       <div className="form-outline mb-4">
-                        <input
-                          type="password"
-                          name="password"
-                          value={password}
+                        <textarea
+                          type="textbox"
+                          name="description"
+                          value={description}
                           onChange={(e) => data(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example3">
-                          password
+                          description
                         </label>
                       </div>
-                      {/* password input */}
+                      {/* description input */}
                       <div className="form-outline mb-4">
                         <input
-                          type="text"
-                          name="phone"
-                          value={phone}
+                          type="number"
+                          name="userID"
+                          value={userID}
                           onChange={(e) => data(e)}
                           className="form-control"
                         />
                         <label className="form-label" htmlFor="form3Example4">
-                          phone Number
+                          userID Number
                         </label>
                       </div>
-
+                      <div className="form-outline mb-4">
+                        <select
+                          className="form-select"
+                          aria-label="Default select example"
+                        >
+                          <option></option>
+                          <option
+                            value={type}
+                            onChange={(e) => data(e)}
+                            name="type"
+                            type="number"
+                          >
+                            1
+                          </option>
+                          <option
+                            type="number"
+                            name="type"
+                            onChange={(e) => data(e)}
+                            value={type}
+                          >
+                            2
+                          </option>
+                        </select>
+                        <label className="form-label" htmlFor="form3Example4">
+                          Select type
+                        </label>
+                      </div>
                       {/* Submit button */}
                       <button
                         type="submit"
@@ -122,4 +153,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default AddTransaction;
