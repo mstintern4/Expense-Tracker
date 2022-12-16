@@ -104,24 +104,13 @@ const AddTransaction = () => {
                         <select
                           className="form-select"
                           aria-label="Default select example"
+                          value={type}
+                          onChange={(e) => data(e)}
+                          name="type"
                         >
                           <option></option>
-                          <option
-                            value={type}
-                            onChange={(e) => data(e)}
-                            name="type"
-                            type="number"
-                          >
-                            1
-                          </option>
-                          <option
-                            type="number"
-                            name="type"
-                            onChange={(e) => data(e)}
-                            value={type}
-                          >
-                            2
-                          </option>
+                          <option type="number">1</option>
+                          <option type="number">2</option>
                         </select>
                         <label className="form-label" htmlFor="form3Example4">
                           Select Type

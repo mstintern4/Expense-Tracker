@@ -7,7 +7,7 @@ const ShowTransactions = () => {
 
   const loadUsers = async () => {
     const result = await axios.get(
-      "https://pkdservers.com/ExpenseTracker/Transactions/GetAllTransactionsByUserID/1"
+      "https://pkdservers.com/ExpenseTracker/Transactions/GetAllTransactionsByUserID/12"
     );
     setUsers(result.data);
     console.log(result.data);
