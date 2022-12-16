@@ -39,6 +39,7 @@ const AddTransaction = () => {
   return (
     <div>
       <section className="">
+        <h1>Add Transactions</h1>
         {/* Jumbotron */}
         <div
           className="px-4 py-5 px-md-5 text-center text-lg-start"
