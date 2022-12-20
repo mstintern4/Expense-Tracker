@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   let [login, setLogin] = useState({
     email: "",
     password: "",
@@ -19,7 +21,10 @@ const LoginForm = () => {
     await axios
       .post("https://pkdservers.com/ExpenseTracker/Users/Login", login)
       .then((response) => {
-        console.log(response);
+        let myobj = JSON.stringify(response.data);
+        console.log(response.data);
+        localStorage.setItem("token", myobj);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -29,6 +34,11 @@ const LoginForm = () => {
       password: "",
     });
   };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div>
       <section className="">
@@ -45,6 +55,7 @@ const LoginForm = () => {
                     <form onSubmit={handleLogin}>
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="email"
                           name="email"
                           value={email}
@@ -57,6 +68,7 @@ const LoginForm = () => {
                       </div>
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="password"
                           name="password"
                           value={password}
@@ -75,12 +87,9 @@ const LoginForm = () => {
                       >
                         Login
                       </button>
-
-                      <Link
-                        to="/"
-                        className="btn btn-danger btn-block mb-4 mx-3"
-                      >
-                        Back
+                      <br />
+                      <Link type="text" to="/signup">
+                        Register account?
                       </Link>
                     </form>
                   </div>

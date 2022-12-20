@@ -1,25 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const SignUpForm = () => {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
+
+  const navigate = useNavigate();
   let [inputdata, setInputdata] = useState({
     name: "",
     email: "",
     password: "",
     phone: "",
   });
+
   const { name, email, password, phone } = inputdata;
   const data = (e) => {
     setInputdata({ ...inputdata, [e.target.name]: e.target.value });
   };
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     await axios
       .post("https://pkdservers.com/ExpenseTracker/Users/SignUp", inputdata)
       .then((response) => {
-        console.log(response);
+        let myobj = JSON.stringify(response.data);
+        console.log(response.data);
+        localStorage.setItem("token", myobj);
+        // localStorage.setItem("token", response.data.name);
+        // localStorage.setItem("token", response.data.password);
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +62,7 @@ const SignUpForm = () => {
                       {/* email input */}
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="text"
                           name="name"
                           value={name}
@@ -60,6 +75,7 @@ const SignUpForm = () => {
                       </div>
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="email"
                           name="email"
                           value={email}
@@ -72,6 +88,7 @@ const SignUpForm = () => {
                       </div>
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="password"
                           name="password"
                           value={password}
@@ -85,6 +102,7 @@ const SignUpForm = () => {
                       {/* password input */}
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="text"
                           name="phone"
                           value={phone}
@@ -103,11 +121,9 @@ const SignUpForm = () => {
                       >
                         Sign up
                       </button>
-                      <Link
-                        to="/"
-                        className="btn btn-danger btn-block mb-4 mx-3"
-                      >
-                        Back
+                      <br />
+                      <Link type="text" to="/login">
+                        Already have an account?
                       </Link>
                     </form>
                   </div>

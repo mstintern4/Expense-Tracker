@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { NavDropdown } from "react-bootstrap";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  let user = JSON.parse(localStorage.getItem("token"));
+
+  function logout() {
+    localStorage.clear();
+    navigate("/");
+  }
   return (
     <>
       {/* Navbar */}
@@ -32,32 +40,45 @@ const Navbar = () => {
           </button>
           {/* Collapsible wrapper */}
           <div className="collapse navbar-collapse" id="navbarButtonsExample">
-            {/* Left links */}
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to="/addtransaction">
-                  Add Transaction
+            {localStorage.getItem("token") ? (
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link text-dark" to="/addtransaction">
+                    Add Transaction
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-dark" to="/showtransaction">
+                    Show Transaction
+                  </Link>
+                </li>
+              </ul>
+            ) : (
+              <div className="d-flex align-items-center">
+                <Link to="login" className="btn btn-primary mx-2">
+                  Login
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-dark" to="/showtransaction">
-                  Show Transaction
-                </Link>
-              </li>
-            </ul>
-            {/* Left links */}
-            <div className="d-flex align-items-center">
-              <Link to="login" className="btn btn-primary mx-2">
-                Login
-              </Link>
 
-              <Link to="signup" className="btn btn-primary">
-                Sign up
-              </Link>
-            </div>
+                <Link to="signup" className="btn btn-primary">
+                  Sign up
+                </Link>
+              </div>
+            )}
+
+            {/* Left links */}
+
+            {/* Left links */}
           </div>
+          {localStorage.getItem("token") ? (
+            <nav>
+              <NavDropdown title={user.data.name}>
+                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            </nav>
+          ) : null}
           {/* Collapsible wrapper */}
         </div>
+
         {/* Container wrapper */}
       </nav>
       {/* Navbar */}

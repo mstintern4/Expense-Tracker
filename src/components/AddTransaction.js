@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
+import Navbar from "./Navbar";
 
 const AddTransaction = () => {
+  let user = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
   let [addTransaction, setAddTransaction] = useState({
+    userID: user.data.ID,
     amount: "",
     date: "",
     description: "",
-    userID: "",
     type: "",
   });
   const { amount, date, description, userID, type } = addTransaction;
@@ -24,6 +28,7 @@ const AddTransaction = () => {
       )
       .then((response) => {
         console.log(response);
+        navigate("/showtransaction");
       })
       .catch((err) => {
         console.log(err);
@@ -32,12 +37,12 @@ const AddTransaction = () => {
       amount: "",
       date: "",
       description: "",
-      userID: "",
       type: "",
     });
   };
   return (
     <div>
+      <Navbar />
       <section className="">
         {/* Jumbotron */}
         <div
@@ -53,6 +58,7 @@ const AddTransaction = () => {
                       {/* date input */}
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="text"
                           name="amount"
                           value={amount}
@@ -65,6 +71,7 @@ const AddTransaction = () => {
                       </div>
                       <div className="form-outline mb-4">
                         <input
+                          required
                           type="date"
                           name="date"
                           value={date}
@@ -77,6 +84,7 @@ const AddTransaction = () => {
                       </div>
                       <div className="form-outline mb-4">
                         <textarea
+                          required
                           type="textbox"
                           name="description"
                           value={description}
@@ -88,20 +96,10 @@ const AddTransaction = () => {
                         </label>
                       </div>
                       {/* description input */}
-                      <div className="form-outline mb-4">
-                        <input
-                          type="number"
-                          name="userID"
-                          value={userID}
-                          onChange={(e) => data(e)}
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="form3Example4">
-                          Enter User ID
-                        </label>
-                      </div>
+                      <div className="d-none" value={userID}></div>
                       <div className="form-outline mb-4">
                         <select
+                          required
                           className="form-select"
                           aria-label="Default select example"
                           value={type}
@@ -121,14 +119,8 @@ const AddTransaction = () => {
                         type="submit"
                         className="btn btn-primary btn-block mb-4"
                       >
-                        Sign up
+                        Add Transaction
                       </button>
-                      <Link
-                        to="/"
-                        className="btn btn-danger btn-block mb-4 mx-3"
-                      >
-                        Back
-                      </Link>
                     </form>
                   </div>
                 </div>
