@@ -5,13 +5,13 @@ import axios from "axios";
 import Navbar from "./Navbar";
 
 const ShowTransactions = () => {
-  let user = JSON.parse(localStorage.getItem("token"));
+  let user = JSON.parse(localStorage.getItem("token1"));
 
   const [users, setUsers] = useState([]);
 
   const loadUsers = async () => {
     const result = await axios.get(
-      `https://pkdservers.com/ExpenseTracker/Transactions/GetAllTransactionsByUserID/${user.data.ID}`
+      `https://pkdservers.com/ExpenseTracker/Transactions/GetAllTransactionsByUserID/${user}`
     );
     setUsers(result.data);
     // console.log(result.data);
