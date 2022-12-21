@@ -32,6 +32,7 @@ const ShowTransactions = () => {
               <th scope="col">Description</th>
               <th scope="col">Debit</th>
               <th scope="col">Credit</th>
+              <th scope="col">Balance</th>
             </tr>
           </thead>
           <tbody>

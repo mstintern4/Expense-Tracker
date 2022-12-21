@@ -107,8 +107,12 @@ const AddTransaction = () => {
                           name="type"
                         >
                           <option></option>
-                          <option type="number">1</option>
-                          <option type="number">2</option>
+                          <option type="number" value="1">
+                            Debit
+                          </option>
+                          <option type="number" value="2">
+                            Credit
+                          </option>
                         </select>
                         <label className="form-label" htmlFor="form3Example4">
                           Select Type
