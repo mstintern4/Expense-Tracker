@@ -5,11 +5,11 @@ const Protected = (props) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (
-      !localStorage.getItem("token1") &&
-      !localStorage.getItem("token2") &&
-      !localStorage.getItem("token3") &&
-      !localStorage.getItem("token4") &&
-      !localStorage.getItem("token5")
+      !localStorage.getItem("id") &&
+      !localStorage.getItem("name") &&
+      !localStorage.getItem("email") &&
+      !localStorage.getItem("password") &&
+      !localStorage.getItem("phone")
     ) {
       navigate("login");
     }

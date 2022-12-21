@@ -5,10 +5,10 @@ import axios from "axios";
 import Navbar from "./Navbar";
 
 const AddTransaction = () => {
-  let user = localStorage.getItem("token1");
+  let id = localStorage.getItem("id");
   const navigate = useNavigate();
   let [addTransaction, setAddTransaction] = useState({
-    userID: user,
+    userID: id,
     amount: "",
     date: "",
     description: "",

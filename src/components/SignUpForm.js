@@ -5,11 +5,11 @@ import axios from "axios";
 const SignUpForm = () => {
   useEffect(() => {
     if (
-      localStorage.getItem("token1") &&
-      localStorage.getItem("token2") &&
-      localStorage.getItem("token3") &&
-      localStorage.getItem("token4") &&
-      localStorage.getItem("token5")
+      localStorage.getItem("id") &&
+      localStorage.getItem("name") &&
+      localStorage.getItem("email") &&
+      localStorage.getItem("password") &&
+      localStorage.getItem("phone")
     ) {
       navigate("/login");
     }
@@ -37,11 +37,11 @@ const SignUpForm = () => {
         // let myobj = JSON.stringify(response.data.data);
         // console.log(response.data.data);
         // localStorage.setItem("token", myobj);
-        localStorage.setItem("token1", response.data.data.ID);
-        localStorage.setItem("token2", response.data.data.name);
-        localStorage.setItem("token3", response.data.data.email);
-        localStorage.setItem("token4", response.data.data.password);
-        localStorage.setItem("token5", response.data.data.phone);
+        localStorage.setItem("id", response.data.data.ID);
+        localStorage.setItem("name", response.data.data.name);
+        localStorage.setItem("email", response.data.data.email);
+        localStorage.setItem("password", response.data.data.password);
+        localStorage.setItem("phone", response.data.data.phone);
         navigate("/");
       })
       .catch((err) => {

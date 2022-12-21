@@ -5,13 +5,13 @@ import axios from "axios";
 import Navbar from "./Navbar";
 
 const ShowTransactions = () => {
-  let user = JSON.parse(localStorage.getItem("token1"));
+  let id = localStorage.getItem("id");
 
   const [users, setUsers] = useState([]);
 
   const loadUsers = async () => {
     const result = await axios.get(
-      `https://pkdservers.com/ExpenseTracker/Transactions/GetAllTransactionsByUserID/${user}`
+      `https://pkdservers.com/ExpenseTracker/Transactions/GetAllTransactionsByUserID/${id}`
     );
     setUsers(result.data);
     // console.log(result.data);
@@ -28,11 +28,10 @@ const ShowTransactions = () => {
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">User Id</th>
               <th scope="col">Date</th>
               <th scope="col">Description</th>
-              <th scope="col">Amount</th>
-              <th scope="col">type</th>
+              <th scope="col">Debit</th>
+              <th scope="col">Credit</th>
             </tr>
           </thead>
           <tbody>
@@ -40,11 +39,10 @@ const ShowTransactions = () => {
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{user.userID}</td>
                   <td>{moment(user.date).format("MMM Do YYYY")}</td>
                   <td>{user.description}</td>
-                  <td>{user.amount}</td>
-                  <td>{user.type}</td>
+                  <td>{user.type === 1 ? <td>{user.amount}</td> : null}</td>
+                  <td> {user.type === 2 ? <td>{user.amount}</td> : null}</td>
                 </tr>
               );
             })}

@@ -4,8 +4,8 @@ import { NavDropdown } from "react-bootstrap";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  let user = localStorage.getItem("token2");
-  console.log(user);
+  let name = localStorage.getItem("name");
+  // console.log(user);
   function logout() {
     localStorage.clear();
     navigate("/");
@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light">
         {/* Container wrapper */}
         <div className="container">
           {/* Navbar brand */}
@@ -40,11 +40,11 @@ const Navbar = () => {
           </button>
           {/* Collapsible wrapper */}
           <div className="collapse navbar-collapse" id="navbarButtonsExample">
-            {localStorage.getItem("token1") &&
-            localStorage.getItem("token2") &&
-            localStorage.getItem("token3") &&
-            localStorage.getItem("token4") &&
-            localStorage.getItem("token5") ? (
+            {localStorage.getItem("id") &&
+            localStorage.getItem("name") &&
+            localStorage.getItem("email") &&
+            localStorage.getItem("password") &&
+            localStorage.getItem("phone") ? (
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link className="nav-link text-dark" to="/addtransaction">
@@ -73,13 +73,13 @@ const Navbar = () => {
 
             {/* Left links */}
           </div>
-          {localStorage.getItem("token1") &&
-          localStorage.getItem("token2") &&
-          localStorage.getItem("token3") &&
-          localStorage.getItem("token4") &&
-          localStorage.getItem("token5") ? (
+          {localStorage.getItem("id") &&
+          localStorage.getItem("name") &&
+          localStorage.getItem("email") &&
+          localStorage.getItem("password") &&
+          localStorage.getItem("phone") ? (
             <nav>
-              <NavDropdown title={user}>
+              <NavDropdown title={name}>
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
             </nav>
