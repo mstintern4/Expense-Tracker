@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand navbar-light bg-light">
         {/* Container wrapper */}
         <div className="container">
           {/* Navbar brand */}
