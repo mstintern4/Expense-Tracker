@@ -63,7 +63,9 @@ const ShowTransactions = () => {
         </table>
         <p>Debit: {Debit}</p>
         <p>Credit: {Credit}</p>
-        <p>Total: {total}</p>
+        <p>
+          Total is {total > 0 ? "Debit" : "Credit"} {total}
+        </p>
       </div>
     </React.Fragment>
   );
